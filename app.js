@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+const path = require("path");
 const express = require("express");
 const morgan = require("morgan"); // 3rd Party Middleware
 const rateLimit = require("express-rate-limit");
@@ -14,6 +15,13 @@ const userRouter = require("./routes/userRoutes");
 const reviewRouter = require("./routes/reviewRoutes");
 
 const app = express();
+
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
+
+// middleware agar dapat megakses file static
+// To serve static files such as images, CSS files, and JavaScript files, use the express.static built-in middleware function in Express.
+app.use(express.static(path.join(__dirname, "public"))); // http://127.0.0.1:3000/overview.html
 
 // 1) MIDDLEWARE UNTUK ALL ROUTE
 
@@ -48,10 +56,6 @@ app.use(
   })
 );
 
-// middleware agar dapat megakses file static
-// To serve static files such as images, CSS files, and JavaScript files, use the express.static built-in middleware function in Express.
-app.use(express.static(`${__dirname}/public`)); // http://127.0.0.1:3000/overview.html
-
 // 2) MIDDLEWARE UNTUK SPESIFIK ROUTE
 
 // LIMIT REQUEST FROM SAME API
@@ -63,6 +67,10 @@ const limiter = rateLimit({
 app.use("/api", limiter);
 
 // ROUTE TO SPESIFIK DATA
+app.get("/", (req, res) => {
+  res.status(200).render("base");
+});
+
 app.use("/api/v1/tours", tourRouter); // akan terhubung ke folder routes
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/reviews", reviewRouter);

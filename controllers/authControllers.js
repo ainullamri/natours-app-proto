@@ -1,7 +1,9 @@
+/* eslint-disable node/no-extraneous-require */
+/* eslint-disable import/no-extraneous-dependencies */
 const crypto = require("crypto");
 const { promisify } = require("util");
-// eslint-disable-next-line import/no-extraneous-dependencies
 const jwt = require("jsonwebtoken");
+// const cookie = require("cookie");
 
 const AppError = require("../utilities/appError");
 const catchAsync = require("../utilities/catchAsync");
@@ -111,6 +113,12 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
   // console.log(req.headers);
   const token = req.headers.authorization.split(" ")[1];
+
+  // //  ALTERNATIF MENGGUNAKAN JWT TOKEN DARI COOKIES
+  // // parse the cookies from the request header
+  // const cookies = cookie.parse(req.headers.cookie || "");
+  // // access the token value
+  // const tokenFromCookie = cookies.jwtToken;
 
   // 2) Verify the token
   // if token is not valid, rejecting the promise, proceed to error global handler
