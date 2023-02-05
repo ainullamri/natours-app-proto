@@ -68,7 +68,10 @@ app.use("/api", limiter);
 
 // ROUTE TO SPESIFIK DATA
 app.get("/", (req, res) => {
-  res.status(200).render("base");
+  res.status(200).render("base", {
+    tour: "The Forest Hiker",
+    user: "Ainul",
+  });
 });
 
 app.use("/api/v1/tours", tourRouter); // akan terhubung ke folder routes

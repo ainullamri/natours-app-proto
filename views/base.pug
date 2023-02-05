@@ -1,1 +1,32 @@
-h1 The Park Camper
+doctype html 
+html 
+  head 
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="css/style.css")
+    link(rel="shortcut icon", type="image/png", href="img/logotab.png")
+    link(href="https://fonts.googleapis.com/css?family=Lato:300,300i,700", rel="stylesheet")
+    //- Interpolation: juga dapat berlaku seperti es6 template string (${}) 
+    title Natours | Exciting tours for adventurous people
+
+
+  body 
+    // HEADER
+    include _header
+
+    // CONTENT
+    main.main
+      h1= tour
+
+    // FOOTER
+    include _footer
+        
+    //- buffered core (dapat memasukkan js script ke template)
+    //- h1 The Park Camper
+
+    //- - const x = 9; 
+    //- unbuffered code, dapat membuat script yang diabaikan tp bisa deklarasi
+    //- h2= 2 * x 
+
+    //- p This is just some text
+
