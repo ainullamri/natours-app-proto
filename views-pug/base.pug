@@ -7,7 +7,10 @@ html
     link(rel="shortcut icon", type="image/png", href="img/logotab.png")
     link(href="https://fonts.googleapis.com/css?family=Lato:300,300i,700", rel="stylesheet")
     //- Interpolation: juga dapat berlaku seperti es6 template string (${}) 
-    title Natours | Exciting tours for adventurous people
+    - let titleText = "Natours"
+    - if (title) titleText = `Natours | ${title}` 
+    title #{titleText}
+    
 
 
   body 
@@ -15,8 +18,8 @@ html
     include _header
 
     // CONTENT
-    main.main
-      h1= tour
+    block content
+      h1 This is the overview placeholder
 
     // FOOTER
     include _footer

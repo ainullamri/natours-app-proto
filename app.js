@@ -13,11 +13,12 @@ const globalErrorHandler = require("./controllers/errorControllers");
 const tourRouter = require("./routes/tourRoutes");
 const userRouter = require("./routes/userRoutes");
 const reviewRouter = require("./routes/reviewRoutes");
+const viewRouter = require("./routes/viewRoutes");
 
 const app = express();
 
 app.set("view engine", "pug");
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "views-pug"));
 
 // middleware agar dapat megakses file static
 // To serve static files such as images, CSS files, and JavaScript files, use the express.static built-in middleware function in Express.
@@ -66,14 +67,11 @@ const limiter = rateLimit({
 });
 app.use("/api", limiter);
 
-// ROUTE TO SPESIFIK DATA
-app.get("/", (req, res) => {
-  res.status(200).render("base", {
-    tour: "The Forest Hiker",
-    user: "Ainul",
-  });
-});
+// ROUTE
+// RENDER ROUTE
+app.use("/", viewRouter);
 
+// API ROUTE
 app.use("/api/v1/tours", tourRouter); // akan terhubung ke folder routes
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/reviews", reviewRouter);

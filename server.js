@@ -19,8 +19,8 @@ const DB = process.env.DATABASE.replace(
   "<PASSWORD>",
   process.env.DATABASE_PASSWORD
 ).replace("<DATABASE_NAME>", process.env.DATABASE_NAME);
-const port = 3000;
 
+const port = 3000;
 // connect to connection string
 // sejenis ketetapan dalam mengatasi mongoDB
 mongoose
