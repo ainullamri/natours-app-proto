@@ -45,7 +45,7 @@ reviewSchema.pre(/^find/, function (next) {
   this.populate({
     // tidak perlu mengaktifkan populate tour
     path: "user", // "tour user", // for multiple path just use space
-    select: "name",
+    select: "name photo",
   });
 
   next();
